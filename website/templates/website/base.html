@@ -27,6 +27,10 @@
           rel="stylesheet">
     {% endblock fonts %}
 
+    {% block javascript %}
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+    {% endblock javascript %}
+
     {% block vendor_css %}
     <!-- Vendor CSS Files -->
     <link href="{% static 'website/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -60,7 +64,7 @@
                 <li><a href="{% url 'index' %}#about">About</a></li>
                 <li><a href="{% url 'index' %}#menu">Menu</a></li>
                 <li><a href="{% url 'index' %}#events">Events</a></li>
-                <li><a href="{% url 'index' %}#chefs">Chefs</a></li>
+                <li><a href="{% url 'index' %}#members">members</a></li>
                 <li><a href="{% url 'index' %}#gallery">Gallery</a></li>
                 <li class="dropdown"><a href="#"><span>Drop Down</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -85,7 +89,7 @@
             </ul>
         </nav><!-- .navbar -->
 
-        <a class="btn-book-a-table" href="{% url 'index' %}#book-a-table">Book a Table</a>
+        <a class="btn-book-a-stay" href="{% url 'index' %}#book-a-stay">Book a Property</a>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
@@ -120,7 +124,7 @@
                 <div>
                     <h4>Reservations</h4>
                     <p>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
+                        <strong>Phone:</strong> +1 (407) 731-0215<br>
                         <strong>Email:</strong> info@example.com<br>
                     </p>
                 </div>
