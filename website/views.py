@@ -18,6 +18,11 @@ def index(request):
     return render(request, 'website/index.html', context)
 
 
+def inner_page(request):
+    context = {}
+    return render(request, 'website/sample-inner-page.html', context)
+
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
