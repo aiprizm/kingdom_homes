@@ -15,8 +15,8 @@
 
     {% block head_favicon %}
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{% static 'website/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'website/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
     {% endblock head_favicon %}
 
     {% block fonts %}
@@ -38,7 +38,7 @@
 
     {% block main_css %}
     <!-- Template Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="{% static 'website/css/main.css' %}" rel="stylesheet">
     {% endblock main_css %}
 </head>
 
@@ -173,6 +173,8 @@
 <script src="{% static 'website/vendor/purecounter/purecounter_vanilla.js' %}"></script>
 <script src="{% static 'website/vendor/swiper/swiper-bundle.min.js' %}"></script>
 <!--<script src="assets/vendor/php-email-form/validate.js"></script>-->
+{% endblock footer_vendor_js %}
+
 
 <!-- Template Main JS File -->
 {% block footer_site_js %}
