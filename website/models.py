@@ -18,7 +18,7 @@ class Contact(models.Model):
 class Booking(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=150)
-    phone_number = PhoneNumberField()
+    phone = PhoneNumberField()
     check_in = models.DateTimeField()
     n_people = models.IntegerField()
     subject = models.TextField(max_length=100)

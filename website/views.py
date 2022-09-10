@@ -12,9 +12,12 @@ from kingdom_homes.settings import EMAIL_HOST_USER
 
 def index(request):
     contact_form = ContactForm()
+    booking_form = BookingForm()
     context = {
         "contact_form": contact_form,
+        "booking_form": booking_form
     }
+    print(booking_form.as_p())
     return render(request, 'website/index.html', context)
 
 
