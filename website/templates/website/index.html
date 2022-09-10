@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-          <img src="{% static 'website/img/hero-img4.jpg' %}" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+          <img src="{% static 'website/img/hero-img.jpg' %}" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="row gy-4">
-          <div class="col-lg-7 position-relative about-img" style='background-image: url("/static/website/img/about.jpg") ;' data-aos="fade-up" data-aos-delay="150">
+          <div class="col-lg-7 position-relative about-img" style='background-image: url("/static/website/img/about-try.jpg")' data-aos="fade-up" data-aos-delay="150">
             <div class="call-us position-absolute">
               <h4>Book a Property</h4>
               <p>+1 (407) 731-0215</p>
@@ -338,7 +338,7 @@
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="member-member">
               <div class="member-img">
-                <img src="{% static 'website/img/team/chefs-1.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'website/img/team/eric.jpg' %}" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -347,8 +347,8 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Master member</span>
+                <h4>Eric Carmichael</h4>
+                <span>Founder and CEO</span>
                 <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
               </div>
             </div>
@@ -366,8 +366,8 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Patissier</span>
+                <h4>Mike</h4>
+                <span>Real Estate Expert</span>
                 <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
               </div>
             </div>
@@ -376,7 +376,7 @@
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
             <div class="member-member">
               <div class="member-img">
-                <img src="{% static 'website/img/team/chefs-3.jpg' %}" class="img-fluid" alt="">
+                <img src="{% static 'website/img/team/siddhesh.jpg' %}" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -385,9 +385,9 @@
                 </div>
               </div>
               <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cook</span>
-                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
+                <h4>Siddhesh Pisal</h4>
+                <span>CTO</span>
+                <p>Data Scientist and Engineer with 8+ years of experience across different domains. Loves building data driven products, finding patterns, trends and solving real world problems with data driven insights.</p>
               </div>
             </div>
           </div><!-- End members Member -->
@@ -411,37 +411,46 @@
           <div class="col-lg-4 reservation-img" style='background-image: url("/static/website/img/reservation.jpg");' data-aos="zoom-out" data-aos-delay="200"></div>
 
           <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-            <form action="forms/book-a-stay.php" method="post" role="form" class="php-email-form booking" data-aos="fade-up" data-aos-delay="100">
+            <form action="" method="post" role="form" class="php-email-form booking" data-aos="fade-up" data-aos-delay="100">
+              {% csrf_token %}
               <div class="row gy-4">
+                {{ booking_form.non_field_errors }}
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  {{ booking_form.name.errors }}
+                  {{ booking_form.name }}
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                  {{ booking_form.email.errors }}
+                  {{ booking_form.email }}
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  {{ booking_form.phone.errors }}
+                  {{ booking_form.phone }}
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                  <input type="text" name="date" class="form-control" id="date" placeholder="Date and Check-in Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                  {{ booking_form.check_in.errors }}
+                  {{ booking_form.check_in }}
                   <div class="validate"></div>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                  <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                  {{ booking_form.n_people.errors }}
+                  {{ booking_form.n_people }}
                   <div class="validate"></div>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+                {{ booking_form.subject.errors }}
+                  {{ booking_form.subject }}
                 <div class="validate"></div>
               </div>
               <div class="mb-3">
                 <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                <div class="error-message">Something went wrong, contact us as kingdom_homesstays@gmail.com</div>
+                <div class="sent-message">Your booking request was sent. We will call back or send an e-mail to confirm
+                  your reservation. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Book a Property</button></div>
             </form>
@@ -528,8 +537,8 @@
               <i class="icon bi bi-share flex-shrink-0"></i>
               <div>
                 <h3>Opening Hours</h3>
-                <div><strong>Mon-Sat:</strong> 11AM - 23PM;
-                  <strong>Sunday:</strong> Closed
+                <div><strong>Mon-Sat:</strong> 9AM - 11PM;
+                  <strong>Sunday:</strong> 11AM-6PM
                 </div>
               </div>
             </div>
@@ -537,20 +546,26 @@
 
         </div>
 
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form contact p-3 p-md-4">
+        <form action="" method="post" role="form" class="php-email-form contact p-3 p-md-4">
+          {% csrf_token %}
           <div class="row">
-            <div class="col-xl-6 form-group">
-              <input type="text" name="name" class="form-control" id="id_name" placeholder="Your Name" required>
+            {{ contact_form.non_field_errors }}
+            <div class="col-xl-6 form-group">`
+              {{ contact_form.name.errors }}
+              {{ contact_form.name }}
             </div>
             <div class="col-xl-6 form-group">
-              <input type="email" class="form-control" name="email" id="id_email" placeholder="Your Email" required>
+              {{ contact_form.email.errors }}
+              {{ contact_form.email }}
             </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="subject" id="id_subject" placeholder="Subject" required>
+            {{ contact_form.subject.errors }}
+            {{ contact_form.subject }}
           </div>
           <div class="form-group">
-            <textarea class="form-control" name="message" rows="5" id="id_message" placeholder="Message" required></textarea>
+            {{ contact_form.message.errors }}
+            {{ contact_form.message }}
           </div>
           <div class="my-3">
             <div class="loading">Loading</div>
@@ -570,6 +585,40 @@
 <script type='text/javascript'>
 
   $(document).ready(function(){
+
+    // AJAX for posting booking
+    function book_with_us() {
+        $.ajax({
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            url : "{% url 'booking' %}", // the endpoint
+            type : "POST", // http method
+            data : {
+              name: $('#id_name').val(),
+              email: $('#id_subject').val(),
+              phone: $('#id_phone').val(),
+              message: $('#id_message').val(),
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            }, // data sent with the post request
+            // handle a successful response
+            success : function(json) {
+                $('#id_name').val(''); // remove the value from the input
+                $('#id_email').val(''); // remove the value from the input
+                $('#id_phone_number').val(''); // remove the value from the input
+                $('#id_check_in').val('');
+                $('#id_n_people').val('');
+                $('#id_subject').val('');
+                $('#id_message').val('');
+                $(".sent-message").addClass("d-block")
+            },
+
+            // handle a non-successful response
+            error : function(xhr,errmsg,err) {
+                $(".error-message").addClass("d-block")
+                //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    }
+
 
     // AJAX for posting
     function contact_us() {

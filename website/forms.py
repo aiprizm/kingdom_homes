@@ -17,8 +17,9 @@ BOOKING_PLACE_HOLDERS = {
     "Name": "Your name",
     "Email": "Your Email",
     "Phone": "Your Phone",
-    "Date": "Date and Time of Check-In",
-    "People": "# of People",
+    "Check In": "Date and Time of Check-In",
+    "N People": "# of People",
+    "Subject": "Subject",
     "Message": "Message"
 }
 
@@ -46,7 +47,7 @@ class BookingForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'Address': forms.Textarea(attrs={'rows': 5}),
+            'Check In': forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S', attrs={"type": "datetime-local"}),
             "Phone Number": PhoneNumberPrefixWidget(),
         }
 
@@ -54,4 +55,6 @@ class BookingForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = CONTACT_PLACE_HOLDERS.get(field.label.title())
+            if field.label.title() == "Check In":
+                field.widget.attrs['class'] += " datetimefield"
+            field.widget.attrs['placeholder'] = BOOKING_PLACE_HOLDERS.get(field.label.title())
