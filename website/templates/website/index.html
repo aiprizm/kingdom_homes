@@ -9,10 +9,13 @@
       <div class="row justify-content-between gy-5">
         <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
           <h2 data-aos="fade-up">Have a property<br>for rent?</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Do you have a property you need to rent? We are a local hospitality company and we're looking for rentals just like yours!</p>
+          <p data-aos="fade-up" data-aos-delay="100">Do you have a property you need to rent? We are a local hospitality
+            company, and we're looking for rentals just like yours!</p>
+
           <p data-aos="fade-up" data-aos-delay="100">We offer daily professional cleanings, pet and smoke-free tenants,
             minimal appliance and water usage, the lowest wear and tear, secure keyless entry and automatic monthly
           rental payments <b><u>ALL AT A ZERO COST</u></b></p>
+
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="#book-a-stay" class="btn-book-a-stay">Book a Property</a>
             <a href="{% static 'website/kingdom_homes_video.mp4' %}" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
@@ -79,8 +82,9 @@
             <div class="why-box">
               <h3>Why Choose Kingdom Homes?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                At Kingdom Homes we're not just selling you a room, we’re in the business of curating experiences that
+                last a lifetime. Acclaimed and awarded for our hospitality standards by customers, critics and media
+                alike, your search for the finest ends at Kingdom Home Stays.
               </p>
               <div class="text-center">
                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -291,7 +295,7 @@
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style='background-image: url("static/website/img/events-4.jpg")'>
               <h3>Better than Home</h3>
-              <div class="price align-self-start">$99</div>
+              <div class="price align-self-start">$199</div>
               <p class="description">
                 Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum voluptas eos omnis facere. Enim facilis veritatis id est rem repudiandae nulla expedita quas.
               </p>
@@ -598,7 +602,7 @@
     }
 
     // Submit post on submit
-    $('.php-email-form').off().on('submit', function(event){
+    $('.php-email-form.contact').off().on('submit', function(event){
         event.preventDefault();
         contact_us();
     });

@@ -1,0 +1,1 @@
+web: gunicorn taxhelpcare.wsgi --log-file -
