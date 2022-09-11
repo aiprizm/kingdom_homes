@@ -17,7 +17,6 @@ def index(request):
         "contact_form": contact_form,
         "booking_form": booking_form
     }
-    print(booking_form.as_p())
     return render(request, 'website/index.html', context)
 
 
