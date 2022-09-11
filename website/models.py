@@ -6,8 +6,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=150)
-    subject = models.TextField(max_length=100)
-    message = models.CharField(max_length=500)
+    subject = models.CharField(max_length=200)
+    message = models.TextField(max_length=500)
     phone_number = PhoneNumberField()
 
     def __str__(self):
@@ -16,13 +16,14 @@ class Contact(models.Model):
 
 # Create your models here.
 class Booking(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=150)
-    phone = PhoneNumberField()
-    check_in = models.DateTimeField()
-    n_people = models.IntegerField()
-    subject = models.TextField(max_length=100)
-    message = models.CharField(max_length=500)
+    book_name = models.CharField(max_length=100)
+    book_email = models.EmailField(max_length=150)
+    book_phone = PhoneNumberField()
+    book_date = models.DateField()
+    book_time = models.TimeField()
+    book_n_people = models.IntegerField()
+    book_subject = models.TextField(max_length=100)
+    book_message = models.CharField(max_length=500)
 
     def __str__(self):
         return self.email

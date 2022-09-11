@@ -1,0 +1,153 @@
+{% extends 'website/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Sample Inner Page</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Sample Inner Page</li>
+          </ol>
+        </div>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+        <!-- ======= Book a Property Section ======= -->
+    <section id="book-a-stay" class="book-a-stay">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Book a Property</h2>
+                <p>Book <span>Your Stay</span> With Us</p>
+            </div>
+
+            <div class="row g-0">
+
+                <div class="col-lg-4 reservation-img"
+                     style='background-image: url("/static/website/img/reservation.jpg");' data-aos="zoom-out"
+                     data-aos-delay="200"></div>
+
+                <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
+                    <form action="" method="post" role="form" class="php-email-form booking" data-aos="fade-up"
+                          data-aos-delay="100">
+                        <div class="row gy-4">
+                            {{ booking_form.non_field_errors }}
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_name.errors }}
+                                {{ booking_form.book_name }}
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_email.errors }}
+                                {{ booking_form.book_email }}
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_phone.errors }}
+                                {{ booking_form.book_phone }}
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_date.errors }}
+                                {{ booking_form.book_date }}
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_time.errors }}
+                                {{ booking_form.book_time }}
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_n_people.errors }}
+                                {{ booking_form.book_n_people }}
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            {{ booking_form.book_subject.errors }}
+                            {{ booking_form.book_subject }}
+                            <div class="validate"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="loading booking">Loading</div>
+                            <div class="error-message booking">Something went wrong, contact us as
+                                kingdom_homesstays@gmail.com
+                            </div>
+                            <div class="sent-message booking">Your booking request was sent. We will call back or send
+                                an e-mail
+                                to confirm your reservation. Thank you!
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit">Book a Property</button>
+                        </div>
+                    </form>
+                </div><!-- End Reservation Form -->
+
+            </div>
+
+        </div>
+    </section><!-- End Book a Property Section -->
+
+
+  </main><!-- End #main -->
+{% block page_js %}
+<script type='text/javascript'>
+
+  $(document).ready(function(){
+    // AJAX for posting booking
+    function book_with_us() {
+        $.ajax({
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            url : "{% url 'booking' %}", // the endpoint
+            type : "POST", // http method
+            data : {
+              name: $('#id_name').val(),
+              email: $('#id_subject').val(),
+              phone: $('#id_phone').val(),
+              message: $('#id_message').val(),
+              csrfmiddlewaretoken: {{ csrf_token }},
+            }, // data sent with the post request
+            // handle a successful response
+            success : function(json) {
+                $('#id_book_name').val(''); // remove the value from the input
+                $('#id_book_email').val(''); // remove the value from the input
+                $('#id_book_phone').val(''); // remove the value from the input
+                $('#id_book_check_in').val('');
+                $('#id_book_n_people').val('');
+                $('#id_book_subject').val('');
+                $('#id_book_message').val('');
+                $(".sent-message.booking").addClass("d-block")
+            },
+
+            // handle a non-successful response
+            error : function(xhr,errmsg,err) {
+                $(".error-message.booking").addClass("d-block")
+                //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+        console.log(data);
+    }
+
+
+    // Submit post on submit
+    $('.php-email-form.booking').off().on('submit', function(event){
+        event.preventDefault();
+        book_with_us();
+    });
+
+
+})
+</script>
+
+{% endblock page_js %}
+
+{% endblock content %}

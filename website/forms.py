@@ -14,13 +14,14 @@ CONTACT_PLACE_HOLDERS = {
 }
 
 BOOKING_PLACE_HOLDERS = {
-    "Name": "Your name",
-    "Email": "Your Email",
-    "Phone": "Your Phone",
-    "Check In": "Date and Time of Check-In",
-    "N People": "# of People",
-    "Subject": "Subject",
-    "Message": "Message"
+    "Book Name": "Your name",
+    "Book Email": "Your Email",
+    "Book Phone": "Your Phone",
+    "Book Date": "Date of Check-In (YYYY-MM-DD)",
+    "Book Time": "Time of Check-In (HH:MM:SS)",
+    "Book N People": "# of People",
+    "Book Subject": "Subject",
+    "Book Message": "Message"
 }
 
 
@@ -29,13 +30,11 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = '__all__'
 
-        widgets = {
-            'Address': forms.Textarea(attrs={'rows': 5}),
-            "Phone Number": PhoneNumberPrefixWidget(),
-        }
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['message'].widget.attrs.update({
+            'rows': 5
+        })
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = CONTACT_PLACE_HOLDERS.get(field.label.title())
@@ -47,7 +46,8 @@ class BookingForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'Check In': forms.DateTimeInput(format='%Y-%m-%d %H:%M:%S', attrs={"type": "datetime-local"}),
+            'Book Date': forms.DateInput(format='%Y-%m-%d', attrs={"type": "datetime-local"}),
+            'Book Time': forms.DateInput(format='%H:%M:%S', attrs={"type": "datetime-local"}),
             "Phone Number": PhoneNumberPrefixWidget(),
         }
 
@@ -55,6 +55,4 @@ class BookingForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
-            if field.label.title() == "Check In":
-                field.widget.attrs['class'] += " datetimefield"
             field.widget.attrs['placeholder'] = BOOKING_PLACE_HOLDERS.get(field.label.title())

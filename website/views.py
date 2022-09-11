@@ -2,7 +2,7 @@ import json
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-
+from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail, BadHeaderError
 from .forms import ContactForm, BookingForm
 from kingdom_homes.settings import EMAIL_HOST_USER
@@ -46,7 +46,7 @@ def contact(request):
             except BadHeaderError:
                 response = "Bad Header Sent"
                 return HttpResponse(response)
-            return HttpResponse(response, status=200)
+            return render(request, 'website/index.html', status=200)
         else:
             response = {}
             return JsonResponse(response, status=403)
@@ -63,12 +63,13 @@ def booking(request):
             subject = "Kingdom Homes Booking Request"
             print(form.cleaned_data)
             body = {
-                    'Name': form.cleaned_data['name'],
-                    'Email': form.cleaned_data['email'],
-                    "Phone": form.cleaned_data['phone'],
-                    "Date": form.cleaned_data['date'],
-                    "People": form.cleaned_data['people'],
-                    "Message": form.cleaned_data['message']
+                    'Name': form.cleaned_data['book_name'],
+                    'Email': form.cleaned_data['book_email'],
+                    "Phone": form.cleaned_data['book_phone'],
+                    "Date": form.cleaned_data['book_date'],
+                    "Time": form.cleaned_data['book_time'],
+                    "People": form.cleaned_data['book_n_people'],
+                    "Subject": form.cleaned_data['book_subject']
                 }
             email_header = "A new client is trying to contact you:"
             message = "\n".join([email_header] + [f"{key}: {str(value)}" for key, value in body.items()])
