@@ -12,10 +12,10 @@
                 <p data-aos="fade-up" data-aos-delay="100">Do you have a property you need to rent? We are a local
                     hospitality company and we're looking for rentals just like yours!</p>
                 <p data-aos="fade-up" data-aos-delay="100">We offer daily professional cleanings, pet and smoke-free
-                    tenants,
-                    minimal appliance and water usage, the lowest wear and tear, secure keyless entry and automatic
-                    monthly
-                    rental payments <b><u>ALL AT A ZERO COST</u></b></p>
+                    tenants, minimal appliance and water usage, the lowest wear and tear, secure keyless entry and
+                    automatic monthly rental payments <b><u>ALL AT A ZERO COST</u></b></p>
+                <p data-aos="fade-up" data-aos-delay="100">We also furnish your unfurnished properties with brand-new
+                and latest modernist furniture.</p>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     <a href="#book-a-stay" class="btn-book-a-stay">Book a Property</a>
                     <a href="{% static 'website/kingdom_homes_video.mp4' %}"
@@ -54,33 +54,31 @@
                 <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
                     <div class="content ps-0 ps-lg-5">
                         <p class="fst-italic">
-                            Welcome to Kingdom Home Stays, your number one source for all things [product]. We're
-                            dedicated to providing you the very best of [product], with an emphasis on [store
-                            characteristic 1], [store characteristic 2], [store characteristic 3].x
+                            Kingdom Homes Stays was started 14 years ago by Eric Carmichael in Orlando, Florida. At
+                            first
+                            the company was only leasing single-family houses throughout the Central Florida area,
+                            however,
+                            shortly after our doors opened we realized there was a massive demand for single and
+                            multifamily short-term rentals as well. Our company most valuable asset is that we are
+                            property owners ourselves.
                         </p>
                         <ul>
-                            <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.
+                            <li><i class="bi bi-check2-all"></i> We practice what we preach.
                             </li>
-                            <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in voluptate
-                                velit.
+                            <li><i class="bi bi-check2-all"></i> We short term and lease our own properties.
                             </li>
-                            <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda
-                                mastiro dolore eu fugiat nulla pariatur.
+                            <li><i class="bi bi-check2-all"></i> We use the latest technology in the industry. It helps
+                                to provide greater transparency and reduced costs to ourselves and our clients - A win-win.
                             </li>
                         </ul>
                         <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident
+                            Our customer service is what separates us from our competition because we live it and have
+                            proven methods that we use, and we offer it to other owners who want the benefit but don't
+                            have the time or experience to maximize their property's true value in an expedited time
+                            frame. We carefully select our clients to make sure their core values align with those of
+                            Kingdom Homes Stays.
                         </p>
 
-                        <div class="position-relative mt-4">
-                            <img src="{% static 'website/img/about-2.jpg' %}" class="img-fluid" alt="">
-                            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -395,44 +393,49 @@
                         <div class="row gy-4">
                             {{ booking_form.non_field_errors }}
                             <div class="col-lg-4 col-md-6">
-                                {{ booking_form.name.errors }}
-                                {{ booking_form.name }}
+                                {{ booking_form.book_name.errors }}
+                                {{ booking_form.book_name }}
                                 <div class="validate"></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                {{ booking_form.email.errors }}
-                                {{ booking_form.email }}
+                                {{ booking_form.book_email.errors }}
+                                {{ booking_form.book_email }}
                                 <div class="validate"></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                {{ booking_form.phone.errors }}
-                                {{ booking_form.phone }}
+                                {{ booking_form.book_phone.errors }}
+                                {{ booking_form.book_phone }}
                                 <div class="validate"></div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                {{ booking_form.check_in.errors }}
-                                {{ booking_form.check_in }}
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_date.errors }}
+                                {{ booking_form.book_date }}
                                 <div class="validate"></div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                {{ booking_form.n_people.errors }}
-                                {{ booking_form.n_people }}
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_time.errors }}
+                                {{ booking_form.book_time }}
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                {{ booking_form.book_n_people.errors }}
+                                {{ booking_form.book_n_people }}
                                 <div class="validate"></div>
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            {{ booking_form.subject.errors }}
-                            {{ booking_form.subject }}
+                            {{ booking_form.book_subject.errors }}
+                            {{ booking_form.book_subject }}
                             <div class="validate"></div>
                         </div>
                         <div class="mb-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message">Something went wrong, contact us as
+                            <div class="loading booking">Loading</div>
+                            <div class="error-message booking">Something went wrong, contact us as
                                 kingdom_homesstays@gmail.com
                             </div>
-                            <div class="sent-message">Your booking request was sent. We will call back or send an e-mail
-                                to confirm
-                                your reservation. Thank you!
+                            <div class="sent-message booking">Your booking request was sent. We will call back or send
+                                an e-mail
+                                to confirm your reservation. Thank you!
                             </div>
                         </div>
                         <div class="text-center">
@@ -543,11 +546,11 @@
 
             </div>
 
-            <form action="" method="post" role="form" class="php-email-form contact p-3 p-md-4">
+            <form action="" method="post" role="form" class="php-email-form contact_us p-3 p-md-4">
                 {% csrf_token %}
                 <div class="row">
                     {{ contact_form.non_field_errors }}
-                    <div class="col-xl-6 form-group">`
+                    <div class="col-xl-6 form-group">
                         {{ contact_form.name.errors }}
                         {{ contact_form.name }}
                     </div>
@@ -557,17 +560,21 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <!--                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="">-->
                     {{ contact_form.subject.errors }}
                     {{ contact_form.subject }}
                 </div>
                 <div class="form-group">
+                    <!--                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required=""></textarea>-->
                     {{ contact_form.message.errors }}
                     {{ contact_form.message }}
                 </div>
                 <div class="my-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                    <div class="loading contact_us">Loading</div>
+                    <div class="error-message contact_us">Something went wrong, contact us as
+                        kingdom_homesstays@gmail.com
+                    </div>
+                    <div class="sent-message contact_us">Your message has been sent. Thank you!</div>
                 </div>
                 <div class="text-center">
                     <button type="submit">Send Message</button>
@@ -600,22 +607,23 @@
             }, // data sent with the post request
             // handle a successful response
             success : function(json) {
-                $('#id_name').val(''); // remove the value from the input
-                $('#id_email').val(''); // remove the value from the input
-                $('#id_phone_number').val(''); // remove the value from the input
-                $('#id_check_in').val('');
-                $('#id_n_people').val('');
-                $('#id_subject').val('');
-                $('#id_message').val('');
-                $(".sent-message").addClass("d-block")
+                $('#id_book_name').val(''); // remove the value from the input
+                $('#id_book_email').val(''); // remove the value from the input
+                $('#id_book_phone').val(''); // remove the value from the input
+                $('#id_book_check_in').val('');
+                $('#id_book_n_people').val('');
+                $('#id_book_subject').val('');
+                $('#id_book_message').val('');
+                $(".sent-message.booking").addClass("d-block")
             },
 
             // handle a non-successful response
             error : function(xhr,errmsg,err) {
-                $(".error-message").addClass("d-block")
+                $(".error-message.booking").addClass("d-block")
                 //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
             }
         });
+        console.log(data);
     }
 
 
@@ -638,21 +646,27 @@
                 $('#id_subject').val(''); // remove the value from the input
                 $('#id_email').val(''); // remove the value from the input
                 $('#id_message').val('');
-                $(".sent-message").addClass("d-block")
+                $(".sent-message.contact_us").addClass("d-block")
             },
 
             // handle a non-successful response
             error : function(xhr,errmsg,err) {
-                $(".error-message").addClass("d-block")
+                $(".error-message.contact_us").addClass("d-block")
                 //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
             }
         });
     }
 
     // Submit post on submit
-    $('.php-email-form').off().on('submit', function(event){
+    $('.php-email-form.contact_us').off().on('submit', function(event){
         event.preventDefault();
         contact_us();
+    });
+
+    // Submit post on submit
+    $('.php-email-form.booking').off().on('submit', function(event){
+        event.preventDefault();
+        book_with_us();
     });
 
     $('.gallery').hide();
@@ -660,6 +674,10 @@
     $('.stats-counter').hide();
 
 })
+
+
+
+
 
 
 </script>
