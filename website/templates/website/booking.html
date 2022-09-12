@@ -36,7 +36,7 @@
                      data-aos-delay="200"></div>
 
                 <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
-                    <form action="" method="post" role="form" class="php-email-form booking" data-aos="fade-up"
+                    <form action="" method="post" role="form" class="php-email-form" data-aos="fade-up"
                           data-aos-delay="100">
                         <div class="row gy-4">
                             {{ booking_form.non_field_errors }}
@@ -77,11 +77,11 @@
                             <div class="validate"></div>
                         </div>
                         <div class="mb-3">
-                            <div class="loading booking">Loading</div>
-                            <div class="error-message booking">Something went wrong, contact us as
+                            <div class="loading">Loading</div>
+                            <div class="error-message">Something went wrong, contact us as
                                 kingdom_homesstays@gmail.com
                             </div>
-                            <div class="sent-message booking">Your booking request was sent. We will call back or send
+                            <div class="sent-message">Your booking request was sent. We will call back or send
                                 an e-mail
                                 to confirm your reservation. Thank you!
                             </div>
@@ -103,47 +103,58 @@
 <script type='text/javascript'>
 
   $(document).ready(function(){
-    // AJAX for posting booking
+
+    // AJAX for posting
     function book_with_us() {
+        $(".sent-message, .error-message").removeClass("d-block");
         $.ajax({
             headers: {'X-Requested-With': 'XMLHttpRequest'},
-            url : "{% url 'booking' %}", // the endpoint
+            url : "{% url 'contact_us' %}", // the endpoint
             type : "POST", // http method
             data : {
-              name: $('#id_name').val(),
-              email: $('#id_subject').val(),
-              phone: $('#id_phone').val(),
-              message: $('#id_message').val(),
-              csrfmiddlewaretoken: {{ csrf_token }},
+              book_name: $('#id_book_name').val(),
+              book_email: $('#id_book_email').val(),
+              book_phone: $('#id_book_phone').val(),
+              book_date: $('#id_book_date').val(),
+              book_time: $('#id_book_time').val(),
+              book_n_people: $('#id_book_n_people').val(),
+              book_subject: $('#id_book_subject').val(),
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             }, // data sent with the post request
             // handle a successful response
-            success : function(json) {
-                $('#id_book_name').val(''); // remove the value from the input
-                $('#id_book_email').val(''); // remove the value from the input
-                $('#id_book_phone').val(''); // remove the value from the input
-                $('#id_book_check_in').val('');
-                $('#id_book_n_people').val('');
-                $('#id_book_subject').val('');
-                $('#id_book_message').val('');
-                $(".sent-message.booking").addClass("d-block")
+            success : function(response) {
+                // remove the value from the input
+                $('#id_name').val('');
+                $('#id_book_email').val(); // remove the value from the input
+                $('#id_book_phone').val(); // remove the value from the input
+                $('#id_book_date').val();
+                $('#id_book_time').val();
+                $('#id_book_n_people').val();
+                $('#id_book_subject').val();
+                $(".sent-message").html(response.responseText);
+                $(".sent-message").addClass("d-block");
             },
 
             // handle a non-successful response
-            error : function(xhr,errmsg,err) {
-                $(".error-message.booking").addClass("d-block")
-                //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            error : function(response) {
+                var err_msg = $.parseJSON(response.responseText);
+                var error = "";
+                $.each(err_msg, function(key, value){
+                    console.log( "Key: " + key + ", Value: " + value );
+                    error += "<p>" + value + "</p>"
+                })
+                $(".error-message").html(error);
+                $(".error-message").addClass("d-block");
             }
         });
-        console.log(data);
     }
 
-
     // Submit post on submit
-    $('.php-email-form.booking').off().on('submit', function(event){
+    $('.php-email-form').off().on('submit', function(event){
         event.preventDefault();
+        event.stopPropagation();
         book_with_us();
     });
-
 
 })
 </script>
